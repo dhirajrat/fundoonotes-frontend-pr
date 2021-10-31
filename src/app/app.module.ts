@@ -3,21 +3,22 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RegisterComponent } from './register/register.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';  //i
-import { MatButtonModule } from '@angular/material/button'; //i
-import { MatInputModule } from '@angular/material/input'; //i
-import { MatListModule } from '@angular/material/list'; //i
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
@@ -25,11 +26,12 @@ import { MatListModule } from '@angular/material/list'; //i
     BrowserAnimationsModule,
     FlexLayoutModule,
 
-    ReactiveFormsModule,  //i
-    FormsModule,   //i
+    ReactiveFormsModule,
+    FormsModule,
     MatInputModule,
     MatListModule,
     MatButtonModule,
+    MatFormFieldModule
 
   ],
   providers: [],
