@@ -8,6 +8,7 @@ import { FormBuilder, Validators } from '@angular/forms';   //i
 })
 export class LoginComponent implements OnInit {
   submitted = false;
+  logoImage = "assets/images/FundooNotes.png"
 
   loginForm = this.fb.group({
     username: ['', [Validators.required, Validators.minLength(4)]],
