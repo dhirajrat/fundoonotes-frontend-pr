@@ -14,12 +14,14 @@ import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { SignupComponent } from './signup/signup.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { NoteComponent } from './note/note.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    NoteComponent
   ],
   imports: [
     BrowserModule,
