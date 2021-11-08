@@ -15,16 +15,17 @@ import { MatListModule } from '@angular/material/list';
 import { SignupComponent } from './signup/signup.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { NoteComponent } from './note/note.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSidenavModule } from '@angular/material/sidenav';
+
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    SignupComponent,
-    NoteComponent
-  ],
+  declarations: [AppComponent, LoginComponent, SignupComponent, NoteComponent],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
@@ -35,10 +36,12 @@ import { NoteComponent } from './note/note.component';
     MatListModule,
     MatButtonModule,
     MatFormFieldModule,
-    MatCheckboxModule
-
+    MatCheckboxModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatSidenavModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
