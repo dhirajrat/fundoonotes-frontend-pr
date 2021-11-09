@@ -20,9 +20,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { HttpClientModule } from '@angular/common/http';
+import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, SignupComponent, NoteComponent],
+  declarations: [AppComponent, LoginComponent, SignupComponent, NoteComponent, ForgetpasswordComponent],
   imports: [
     BrowserModule,
     HttpClientModule,

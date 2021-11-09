@@ -33,15 +33,12 @@ export class AuthService {
   }
 
   login(loginData: FormBuilder): string | undefined {
-    console.log('auth ser 29: ', loginData);
     this.http.post(this.configUrl + this.loginUrl, loginData).subscribe(
       (data: any) => {
-        console.log('31: ', data);
         localStorage.setItem('currentUser', data.data);
         this.router.navigate(['notes']);
       },
       (error) => {
-        console.log('error in login auth ser: ', error, error.status);
         if (error.status == 400) {
           alert('Either Wrong Password Or Verify Email');
         }
