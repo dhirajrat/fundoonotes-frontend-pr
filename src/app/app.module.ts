@@ -21,9 +21,10 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { HttpClientModule } from '@angular/common/http';
 import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.component';
+import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, SignupComponent, NoteComponent, ForgetpasswordComponent],
+  declarations: [AppComponent, LoginComponent, SignupComponent, NoteComponent, ForgetpasswordComponent, ResetpasswordComponent],
   imports: [
     BrowserModule,
     HttpClientModule,

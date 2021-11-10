@@ -10,6 +10,7 @@ export class AuthService {
   configUrl = 'http://localhost:8000';
   registerUrl = '/register/';
   loginUrl = '/login/';
+  fpUrl = '/forgetPassword/';
   errorMessage: string | undefined;
 
   constructor(private http: HttpClient, private router: Router) {}
@@ -43,6 +44,21 @@ export class AuthService {
           alert('Either Wrong Password Or Verify Email');
         }
         this.errorMessage = error.error.message;
+      }
+    );
+
+    return this.errorMessage;
+  }
+
+  forgetPassword(forgetData: FormBuilder): string | undefined {
+    this.http.post(this.configUrl + this.fpUrl, forgetData).subscribe(
+      (data: any) => {
+        alert('Reset Password Link Sent to Your Email');
+        this.router.navigate(['login']);
+      },
+      (error) => {
+        this.errorMessage = error.error.message;
+        alert('There is an Error');
       }
     );
 

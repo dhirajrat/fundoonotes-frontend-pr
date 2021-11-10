@@ -24,7 +24,7 @@ export class ForgetpasswordComponent implements OnInit {
 
     if (this.forgetForm.valid) {
       console.log(this.forgetForm.value);
-      // this.auth.login(this.forgetForm.value);
+      this.auth.forgetPassword(this.forgetForm.value);
     }
   }
 

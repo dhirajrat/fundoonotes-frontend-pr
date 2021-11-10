@@ -5,9 +5,11 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { NoteComponent } from './note/note.component';
 import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.component';
+import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
+  { path: 'resetpassword', component: ResetpasswordComponent },
   { path: 'forgetpassword', component: ForgetpasswordComponent },
   // { path: '**', redirectTo: '/login' },
   { path: 'signup', component: SignupComponent },
