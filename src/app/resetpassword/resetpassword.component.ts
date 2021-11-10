@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-resetpassword',
@@ -11,6 +12,7 @@ export class ResetpasswordComponent implements OnInit {
   logoImage = 'assets/images/FundooNotes.png';
   submitted = false;
   hide = true;
+  token: string | null | undefined;
 
   resetForm = this.fb.group({
     password: [
@@ -25,7 +27,11 @@ export class ResetpasswordComponent implements OnInit {
     confirm: ['', Validators.required],
   });
 
-  constructor(private fb: FormBuilder, private auth: AuthService) {}
+  constructor(
+    private fb: FormBuilder,
+    private auth: AuthService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {}
 
@@ -35,8 +41,10 @@ export class ResetpasswordComponent implements OnInit {
       return alert("password didn't match");
     }
     if (this.resetForm.valid) {
-      console.log(this.resetForm.value);
-      // this.auth.reset(this.resetForm.value);
+      // Geting Value from Route Params
+      this.token = this.route.snapshot.paramMap.get('token');
+      this.resetForm.value.token = this.token;
+      this.auth.reset(this.resetForm.value);
     }
   }
 

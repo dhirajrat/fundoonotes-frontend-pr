@@ -2,15 +2,15 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NoteComponent } from './note.component';
 
-describe('NoteComponent', () => {
+fdescribe('NoteComponent', () => {
   let component: NoteComponent;
   let fixture: ComponentFixture<NoteComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NoteComponent ]
-    })
-    .compileComponents();
+      declarations: [NoteComponent],
+      imports: [],
+    }).compileComponents();
   });
 
   beforeEach(() => {

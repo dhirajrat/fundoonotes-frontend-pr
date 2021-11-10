@@ -9,9 +9,8 @@ import { ResetpasswordComponent } from './resetpassword/resetpassword.component'
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'resetpassword', component: ResetpasswordComponent },
+  { path: 'resetpassword/:token', component: ResetpasswordComponent },
   { path: 'forgetpassword', component: ForgetpasswordComponent },
-  // { path: '**', redirectTo: '/login' },
   { path: 'signup', component: SignupComponent },
   { path: 'notes', component: NoteComponent, canActivate: [AuthGuard] },
   { path: '', redirectTo: 'notes', pathMatch: 'full' },

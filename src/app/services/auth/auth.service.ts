@@ -11,6 +11,7 @@ export class AuthService {
   registerUrl = '/register/';
   loginUrl = '/login/';
   fpUrl = '/forgetPassword/';
+  resetUrl = '/resetpassword';
   errorMessage: string | undefined;
 
   constructor(private http: HttpClient, private router: Router) {}
@@ -20,7 +21,6 @@ export class AuthService {
 
     this.http.post(this.configUrl + this.registerUrl, signUpData).subscribe(
       (data) => {
-        console.log('auth ser backend Data : ', data);
         alert('User Registered Successfully. Verify mail to login');
         this.router.navigate(['login']);
       },
@@ -43,10 +43,10 @@ export class AuthService {
         if (error.status == 400) {
           alert('Either Wrong Password Or Verify Email');
         }
+        console.log(error);
         this.errorMessage = error.error.message;
       }
     );
-
     return this.errorMessage;
   }
 
@@ -57,8 +57,25 @@ export class AuthService {
         this.router.navigate(['login']);
       },
       (error) => {
+        console.log(error);
         this.errorMessage = error.error.message;
         alert('There is an Error');
+      }
+    );
+
+    return this.errorMessage;
+  }
+
+  reset(resetData: FormBuilder): string | undefined {
+    this.http.post(this.configUrl + this.resetUrl, resetData).subscribe(
+      (data: any) => {
+        alert('Password Reset Successfully! login Now');
+        this.router.navigate(['login']);
+      },
+      (error) => {
+        console.log(error);
+        alert('Error in Reset');
+        this.errorMessage = error.error.message;
       }
     );
 
