@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class AuthService {
+  // Server URL
   configUrl = 'http://localhost:8000';
   registerUrl = '/register/';
   loginUrl = '/login/';
