@@ -22,9 +22,10 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { HttpClientModule } from '@angular/common/http';
 import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
+import { CreateNoteComponent } from './create-note/create-note.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, SignupComponent, NoteComponent, ForgetpasswordComponent, ResetpasswordComponent],
+  declarations: [AppComponent, LoginComponent, SignupComponent, NoteComponent, ForgetpasswordComponent, ResetpasswordComponent, CreateNoteComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
