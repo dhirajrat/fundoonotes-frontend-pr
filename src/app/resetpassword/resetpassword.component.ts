@@ -12,7 +12,6 @@ export class ResetpasswordComponent implements OnInit {
   logoImage = 'assets/images/FundooNotes.png';
   submitted = false;
   hide = true;
-  token: string | null | undefined;
 
   resetForm = this.fb.group({
     password: [
@@ -42,9 +41,10 @@ export class ResetpasswordComponent implements OnInit {
     }
     if (this.resetForm.valid) {
       // Geting Value from Route Params
-      this.token = this.route.snapshot.paramMap.get('token');
-      this.resetForm.value.token = this.token;
-      this.auth.reset(this.resetForm.value);
+      const paramtoken = this.route.snapshot.paramMap.get('token');
+      console.log("respass component onsubmit 46 token: ",paramtoken)
+      // this.resetForm.value.token = this.paramtoken;
+      this.auth.reset(this.resetForm.value, paramtoken);
     }
   }
 

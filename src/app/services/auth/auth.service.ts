@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -11,11 +11,21 @@ export class AuthService {
   configUrl = 'http://localhost:8000';
   registerUrl = '/register/';
   loginUrl = '/login/';
-  fpUrl = '/forgetPassword/';
+  fpUrl = '/forgetpassword/';
   resetUrl = '/resetpassword';
+
   errorMessage: string | undefined;
+  token = ""
+  header = new HttpHeaders().set('token',this.getHeader())
 
   constructor(private http: HttpClient, private router: Router) {}
+
+  getHeader(){
+    if (this.currentUserValue != null){
+      this.token = this.currentUserValue
+    }
+    return this.token
+  }
 
   SignUp(signUpData: FormBuilder) {
     console.log('auth ser input Data : ', signUpData);
@@ -67,8 +77,11 @@ export class AuthService {
     return this.errorMessage;
   }
 
-  reset(resetData: FormBuilder): string | undefined {
-    this.http.post(this.configUrl + this.resetUrl, resetData).subscribe(
+  reset(resetData: FormBuilder, resettoken:any): string | undefined {
+    const resetheader = new HttpHeaders().set('token',resettoken)
+    this.http.post(this.configUrl + this.resetUrl, resetData, {
+      headers: resetheader
+    }).subscribe(
       (data: any) => {
         alert('Password Reset Successfully! login Now');
         this.router.navigate(['login']);
