@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +19,7 @@ export class AuthService {
   token = ""
   header = new HttpHeaders().set('token',this.getHeader())
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router, private toastr: ToastrService) {}
 
   getHeader(){
     if (this.currentUserValue != null){
@@ -64,6 +65,7 @@ export class AuthService {
   forgetPassword(forgetData: FormBuilder): string | undefined {
     this.http.post(this.configUrl + this.fpUrl, forgetData).subscribe(
       (data: any) => {
+        this.toastr.success('Reset Password Link Sent to Your Email');
         alert('Reset Password Link Sent to Your Email');
         this.router.navigate(['login']);
       },

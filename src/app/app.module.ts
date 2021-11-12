@@ -24,6 +24,8 @@ import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.compone
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { CreateNoteComponent } from './create-note/create-note.component';
 
+import { ToastrModule } from 'ngx-toastr';
+
 @NgModule({
   declarations: [AppComponent, LoginComponent, SignupComponent, NoteComponent, ForgetpasswordComponent, ResetpasswordComponent, CreateNoteComponent],
   imports: [
@@ -43,6 +45,7 @@ import { CreateNoteComponent } from './create-note/create-note.component';
     MatToolbarModule,
     MatIconModule,
     MatSidenavModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent],
