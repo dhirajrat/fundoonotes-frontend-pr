@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
     password: ['', [Validators.required]],
   });
 
-  constructor(private fb: FormBuilder, private auth: AuthService) {}
+  constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) {}
 
   ngOnInit(): void {}
 
@@ -26,7 +27,19 @@ export class LoginComponent implements OnInit {
 
     if (this.loginForm.valid) {
       console.log(this.loginForm.value);
-      this.auth.login(this.loginForm.value);
+      this.auth.login(this.loginForm.value).subscribe(
+        (data: any) => {
+          localStorage.setItem('currentUser', data.data);
+          this.router.navigate(['notes']);
+        },
+        (error) => {
+          if (error.status == 400) {
+            alert('Either Wrong Password Or Verify Email');
+          }
+          console.log(error);
+          this.errorMessage = error.error.message;
+        }
+      );
     }
   }
 

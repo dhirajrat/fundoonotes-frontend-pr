@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth/auth.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-resetpassword',
@@ -29,7 +29,8 @@ export class ResetpasswordComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private auth: AuthService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {}
@@ -41,10 +42,16 @@ export class ResetpasswordComponent implements OnInit {
     }
     if (this.resetForm.valid) {
       // Geting Value from Route Params
-      const paramtoken = this.route.snapshot.paramMap.get('token');
-      console.log("respass component onsubmit 46 token: ",paramtoken)
-      // this.resetForm.value.token = this.paramtoken;
-      this.auth.reset(this.resetForm.value, paramtoken);
+      const paramtoken: any = this.route.snapshot.paramMap.get('token');
+      this.auth.reset(this.resetForm.value, paramtoken).subscribe(
+        (data: any) => {
+          alert('Password Reset Successfully! login Now');
+          this.router.navigate(['login']);
+        },
+        (error) => {
+          alert('Error in Reset');
+        }
+      );
     }
   }
 

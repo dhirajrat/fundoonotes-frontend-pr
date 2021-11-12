@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class ForgetpasswordComponent implements OnInit {
     username: ['', [Validators.required, Validators.minLength(4)]],
   });
 
-  constructor(private fb: FormBuilder, private auth: AuthService) {}
+  constructor(private fb: FormBuilder, private auth: AuthService,  private router: Router) {}
 
   ngOnInit(): void {}
 
@@ -24,7 +25,15 @@ export class ForgetpasswordComponent implements OnInit {
 
     if (this.forgetForm.valid) {
       console.log(this.forgetForm.value);
-      this.auth.forgetPassword(this.forgetForm.value);
+      this.auth.forgetPassword(this.forgetForm.value).subscribe(
+        (data: any) => {
+          alert('Reset Password Link Sent to Your Email');
+          this.router.navigate(['login']);
+        },
+        (error) => {
+          alert('There is an Error');
+        }
+      );
     }
   }
 

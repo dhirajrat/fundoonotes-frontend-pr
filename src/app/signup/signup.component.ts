@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -37,7 +38,7 @@ export class SignupComponent implements OnInit {
     confirm: ['', Validators.required],
   });
 
-  constructor(private fb: FormBuilder, private auth: AuthService) {}
+  constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) {}
 
   ngOnInit(): void {}
 
@@ -48,7 +49,17 @@ export class SignupComponent implements OnInit {
     }
     if (this.signupForm.valid) {
       console.log(this.signupForm.value);
-      this.auth.SignUp(this.signupForm.value);
+      this.auth.SignUp(this.signupForm.value).subscribe(
+        (data) => {
+          alert('User Registered Successfully. Verify mail to login');
+          this.router.navigate(['login']);
+        },
+        (error) => {
+          if (error.status == 409) {
+            alert('User Already Exist with this Mail ID');
+          }
+        }
+      );
     }
   }
 
