@@ -19,6 +19,7 @@ export class AuthService {
   fpUrl = '/forgetpassword/';
   resetUrl = '/resetpassword';
   notesUrl = '/createnote/';
+  getNotesUrl = '/getallnotes/';
 
   errorMessage: string | undefined;
   token = '';
@@ -50,15 +51,19 @@ export class AuthService {
   }
 
   reset(resetData: ResetPasswordPayload, resettoken: any): Observable<any> {
-    const resetheader = new HttpHeaders().set('token', resettoken);
     return this.http.post(this.configUrl + this.resetUrl, resetData, {
-      headers: resetheader,
+      headers: new HttpHeaders().set('token', resettoken),
     });
   }
 
   createNote(inputData: NotePayload): Observable<any> {
-    console.log('create Note hit current user value : ', this.token);
     return this.http.post(this.configUrl + this.notesUrl, inputData, {
+      headers: this.header,
+    });
+  }
+
+  fetchNotes(): Observable<any> {
+    return this.http.get(this.configUrl + this.getNotesUrl, {
       headers: this.header,
     });
   }

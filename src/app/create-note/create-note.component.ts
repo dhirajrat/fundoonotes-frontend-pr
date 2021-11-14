@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-note',
@@ -18,13 +19,13 @@ export class CreateNoteComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private auth: AuthService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {}
 
   onSubmit() {
-    console.log(' note submitted');
     if (this.createNoteForm.valid) {
       console.log('valid');
       this.auth.createNote(this.createNoteForm.value).subscribe(
