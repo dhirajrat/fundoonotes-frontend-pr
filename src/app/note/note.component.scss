@@ -51,11 +51,9 @@
 
 .sidenav-content {
   display: flex;
-  height: 100%;
   width: 100%;
-  align-items: center;
-  justify-content: center;
   background-color: white;
+  flex-flow: column wrap;
 }
 
 .sidenav {
@@ -74,6 +72,21 @@
     background-color: rgba(231, 220, 220, 0.945);
     border-radius: 20px;
   }
+}
+
+.createNote {
+  display: flex;
+  width: 100%;
+  height: 20vh;
+  justify-content: center;
+  align-content: center;
+}
+
+.displayNotes {
+  width: 100%;
+  height: 50vh;
+  margin-top: 10%;
+  align-self: center;
 }
 
 .icon-label {

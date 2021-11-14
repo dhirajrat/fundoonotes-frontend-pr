@@ -18,16 +18,28 @@ import { NoteComponent } from './note/note.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatCardModule } from '@angular/material/card';
 
 import { HttpClientModule } from '@angular/common/http';
 import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { CreateNoteComponent } from './create-note/create-note.component';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 import { ToastrModule } from 'ngx-toastr';
+import { DisplayNotesComponent } from './display-notes/display-notes.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, SignupComponent, NoteComponent, ForgetpasswordComponent, ResetpasswordComponent, CreateNoteComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    SignupComponent,
+    NoteComponent,
+    ForgetpasswordComponent,
+    ResetpasswordComponent,
+    CreateNoteComponent,
+    DisplayNotesComponent,
+  ],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -45,7 +57,9 @@ import { ToastrModule } from 'ngx-toastr';
     MatToolbarModule,
     MatIconModule,
     MatSidenavModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    MatExpansionModule,
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

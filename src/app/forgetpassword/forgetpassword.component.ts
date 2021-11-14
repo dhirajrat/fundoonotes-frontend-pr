@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
@@ -16,7 +17,7 @@ export class ForgetpasswordComponent implements OnInit {
     username: ['', [Validators.required, Validators.minLength(4)]],
   });
 
-  constructor(private fb: FormBuilder, private auth: AuthService,  private router: Router) {}
+  constructor(private fb: FormBuilder, private auth: AuthService,  private router: Router, private toastr: ToastrService) {}
 
   ngOnInit(): void {}
 
@@ -27,11 +28,12 @@ export class ForgetpasswordComponent implements OnInit {
       console.log(this.forgetForm.value);
       this.auth.forgetPassword(this.forgetForm.value).subscribe(
         (data: any) => {
-          alert('Reset Password Link Sent to Your Email');
+          this.toastr.success("Reset Password Link Sent to Your Email","Success");
+
           this.router.navigate(['login']);
         },
         (error) => {
-          alert('There is an Error');
+          this.toastr.error("There is an Error","Failed");
         }
       );
     }

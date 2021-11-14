@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-signup',
@@ -38,7 +39,7 @@ export class SignupComponent implements OnInit {
     confirm: ['', Validators.required],
   });
 
-  constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) {}
+  constructor(private fb: FormBuilder, private auth: AuthService, private router: Router, private toastr: ToastrService) {}
 
   ngOnInit(): void {}
 
@@ -51,12 +52,12 @@ export class SignupComponent implements OnInit {
       console.log(this.signupForm.value);
       this.auth.SignUp(this.signupForm.value).subscribe(
         (data) => {
-          alert('User Registered Successfully. Verify mail to login');
+          this.toastr.success("User Registered Successfully. Verify mail to login","Success");
           this.router.navigate(['login']);
         },
         (error) => {
           if (error.status == 409) {
-            alert('User Already Exist with this Mail ID');
+            this.toastr.error("User Already Exist with this Mail ID","Failed");
           }
         }
       );

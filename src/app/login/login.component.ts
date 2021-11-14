@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
@@ -18,7 +19,12 @@ export class LoginComponent implements OnInit {
     password: ['', [Validators.required]],
   });
 
-  constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) {}
+  constructor(
+    private fb: FormBuilder,
+    private auth: AuthService,
+    private router: Router,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -29,12 +35,14 @@ export class LoginComponent implements OnInit {
       console.log(this.loginForm.value);
       this.auth.login(this.loginForm.value).subscribe(
         (data: any) => {
-          localStorage.setItem('currentUser', data.data);
+          this.toastr.success('Login Successful', 'Success');
+          console.log('token created while login', data.token);
+          localStorage.setItem('currentUser', data.token);
           this.router.navigate(['notes']);
         },
         (error) => {
           if (error.status == 400) {
-            alert('Either Wrong Password Or Verify Email');
+            this.toastr.error('Login Failed', 'Failed');
           }
           console.log(error);
           this.errorMessage = error.error.message;

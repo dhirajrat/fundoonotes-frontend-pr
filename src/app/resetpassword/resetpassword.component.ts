@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-resetpassword',
@@ -30,7 +31,8 @@ export class ResetpasswordComponent implements OnInit {
     private fb: FormBuilder,
     private auth: AuthService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {}
@@ -45,11 +47,11 @@ export class ResetpasswordComponent implements OnInit {
       const paramtoken: any = this.route.snapshot.paramMap.get('token');
       this.auth.reset(this.resetForm.value, paramtoken).subscribe(
         (data: any) => {
-          alert('Password Reset Successfully! login Now');
+          this.toastr.success("Password Reset Successfully! login Now","Success");
           this.router.navigate(['login']);
         },
         (error) => {
-          alert('Error in Reset');
+          this.toastr.error("Error in Reset","Failed");
         }
       );
     }

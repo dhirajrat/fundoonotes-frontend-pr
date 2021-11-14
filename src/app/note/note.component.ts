@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class NoteComponent implements OnInit {
   fundooImage = 'assets/images/FundooNotes.png';
 
-  value = false;
+  value = true;
   constructor() {}
 
   ngOnInit(): void {}
